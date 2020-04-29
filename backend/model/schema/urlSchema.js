@@ -12,8 +12,12 @@ const urlSchema = new Schema({
     required: true,
     unique: true,
   },
-  expireOn: {
+  expiresOn: {
     type: Date,
+  },
+  isExpired: {
+    default: false,
+    type: Boolean,
   },
   creator: {
     type: mongoose.Types.ObjectId,

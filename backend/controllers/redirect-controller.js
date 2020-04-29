@@ -14,7 +14,24 @@ const redirect = async (req, res, next) => {
   if (!url) {
     return next(new HttpError("Url not found, please check entered url"));
   }
-  res.status(201).json({ url: url.url, expiresOn: url.expiresOn });
+  if (url.isExpired) {
+    return next(new HttpError("Url expired"));
+  }
+
+  if (new Date(url.expiresOn) < new Date()) {
+    try {
+      url.isExpired = true;
+      await url.save();
+      return res.status(401).json({ message: "url expired" });
+    } catch (err) {
+      return next(new HttpError("Redirecting url failed, please try again"));
+    }
+  }
+
+  res
+    //.status(201)
+    .json(`<meta http-equiv= "refresh" content="5;url=${url.url}"/>`);
+  // .redirect(`https://${url.url}`);
 };
 
 const setCounter = async (req, res, next) => {

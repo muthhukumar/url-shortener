@@ -25,6 +25,6 @@ router.post(
 
 router.delete("/:shortenedurl", deleteUrl);
 
-router.patch("/:shortenedurl", updateUrl);
+router.patch("/:shortenedurl", [check("expiresOn").not().isEmpty()], updateUrl);
 
 module.exports = router;
