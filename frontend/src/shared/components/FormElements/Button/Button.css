@@ -1,0 +1,18 @@
+.shorturl {
+    height: 3.5rem;
+    margin: 1rem 0;
+    width: 8rem;
+    border-radius: 4px;
+    outline: none;
+    background: var(--main-white-color);
+    border: 1.5px solid var(--black-color);
+    font-size: 1.1rem;
+    font-family: 'Chelsea Market', cursive;
+}
+
+.shorturl:hover {
+    cursor: pointer;
+    color: var(--blue-color);
+    border: 1.5px solid var(--blue-color);
+
+}

@@ -1,0 +1,81 @@
+.input {
+    width: 100%;
+    margin: 0;
+}
+
+.input input {
+    height: 3rem;
+    margin: 0;
+    padding: 0;
+}
+
+
+.url-input input {
+    width: 100%;
+    border-radius: 4px;
+    margin: 1rem 0rem;
+    height: 3.5rem;
+    text-align: center;
+    outline: none;
+    border: 1.5px solid var(--black-color);
+    font-size: 1.1rem;
+    font-family: 'Chelsea Market', cursive;
+}
+
+.url-input input:hover,
+.url-input input:active,
+.url-input input:focus {
+    border: 1.5px solid var(--blue-color);
+
+}
+
+
+.customurl {
+    display: flex;
+    align-items: center;
+}
+
+.customurl label {
+    font-size: 1rem;
+    padding: 0 1rem;
+}
+
+.customurl input {
+    width: 10rem;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.expiresOn {
+    display: flex;
+    align-items: center;
+}
+
+.expiresOn label {
+    font-size: 1rem;
+    padding: 0 1rem;
+}
+
+.expiresOn input {
+    width: 10rem;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.toogle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toogle input:checked+.slider {
+    background: #2196f3;
+}
+
+.toogle input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
