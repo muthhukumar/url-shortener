@@ -7,8 +7,8 @@ interface TitleHeader {
   classes?: "main-header__title" | "home-title";
 }
 
-const Title: React.FC<TitleHeader> = (props) => {
-  return <div className={`title ${props.classes}`}>{props.children}</div>;
-};
+const Title: React.FC<TitleHeader> = (props) => (
+  <div className={`title ${props.classes}`}>{props.children}</div>
+);
 
 export default Title;

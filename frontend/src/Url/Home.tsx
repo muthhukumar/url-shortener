@@ -6,7 +6,6 @@ import Title from "../shared/components/UIElements/Title/Title";
 import Input from "../shared/components/FormElements/Input/Input";
 import { EMAIL, MIN_LENGTH } from "../shared/Util/Validator";
 import Button from "../shared/components/FormElements/Button/Button";
-import Toogle from "../shared/components/FormElements/ToogleButton/Toogle";
 
 const Home: React.FC = () => {
   const onInputHandler: (
@@ -27,34 +26,35 @@ const Home: React.FC = () => {
         <Title classes="home-title">ShortURL</Title>
         <form onSubmit={onSubmitHandler}>
           <Input
-            placeholder="URL"
+            placeholder="Your URL"
             validators={[EMAIL()]}
             id="email"
             onInput={onInputHandler}
             classes="url-input"
-          />
-          <Input
-            placeholder="Custom ShortURL"
-            validators={[MIN_LENGTH(4)]}
-            id="customshorturl"
-            onInput={onInputHandler}
-            classes="customurl"
           >
-            CustomUrl
+            URL
           </Input>
-          <Toogle />
-          <Input
-            placeholder="expiresIn"
-            validators={[]}
-            id="expiresIn"
-            onInput={onInputHandler}
-            classes="expiresOn"
-            type="number"
-          >
-            ExpiresIn
-          </Input>
-          <Toogle />
-
+          <div className="input-container">
+            <Input
+              placeholder="URL"
+              validators={[MIN_LENGTH(4)]}
+              id="customshorturl"
+              onInput={onInputHandler}
+              classes="customurl"
+            >
+              CustomUrl
+            </Input>
+            <Input
+              placeholder="hrs"
+              validators={[]}
+              id="expiresIn"
+              onInput={onInputHandler}
+              classes="customurl"
+              type="number"
+            >
+              ExpiresIn
+            </Input>
+          </div>
           <Button onClick={onSubmitHandler} classes="shorturl">
             ShortURL
           </Button>

@@ -14,6 +14,7 @@
     bottom: 0;
     background: #ccc;
     -webkit-transition: .4s;
+    border-radius: 34px;
 
     transition: .4s;
 }
@@ -28,12 +29,6 @@
     -webkit-transition: .4s;
     background: white;
     transition: .4s;
-}
-
-.slider .round {
-    border-radius: 34px;
-}
-
-.slider .round:before {
     border-radius: 50%;
+
 }

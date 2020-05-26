@@ -7,7 +7,7 @@ import Title from "../UIElements/Title/Title";
 const MainNavigation: React.FC = () => {
   return (
     <MainHeader>
-      <Title classes="main-header__title">URLShortener</Title>;
+      <Title classes="main-header__title">URLShortener</Title>
       <nav>
         <NavLinks />
       </nav>

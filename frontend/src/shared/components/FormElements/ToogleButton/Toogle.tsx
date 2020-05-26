@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import "./Toogle.css";
-import Input from "../Input/Input";
 
 const Toogle = () => {
   return (
