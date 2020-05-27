@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -12,10 +13,24 @@ import MyURLs from "./Url/MyURLs";
 import SignUp from "./User/SignUp";
 import Login from "./User/Login";
 import RedirectUrl from "./Url/Redirect";
+import Notification from "./shared/components/UIElements/Notification/Notification";
 
 function App() {
+  const [isNotificationOn, setIsNotificationOn] = useState<boolean>(true);
+
+  const onCloseHandler = () => {
+    setIsNotificationOn(false);
+  };
+
   return (
     <Router>
+      {isNotificationOn && (
+        <Notification
+          classes="error"
+          text="Testing Notificatiob"
+          onClick={onCloseHandler}
+        />
+      )}
       <MainNavigation />
       <main>
         <Switch>

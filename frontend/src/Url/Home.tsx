@@ -4,6 +4,7 @@ import "./Home.css";
 import Card from "../shared/components/UIElements/Card/Card";
 import Title from "../shared/components/UIElements/Title/Title";
 import Input from "../shared/components/FormElements/Input/Input";
+
 import { EMAIL, MIN_LENGTH } from "../shared/Util/Validator";
 import Button from "../shared/components/FormElements/Button/Button";
 
@@ -22,8 +23,8 @@ const Home: React.FC = () => {
 
   return (
     <Card classes="home-card">
+      <Title classes="home-title">ShortURL</Title>
       <div className="wrapper">
-        <Title classes="home-title">ShortURL</Title>
         <form onSubmit={onSubmitHandler}>
           <Input
             placeholder="Your URL"
@@ -34,28 +35,26 @@ const Home: React.FC = () => {
           >
             URL
           </Input>
-          <div className="input-container">
-            <Input
-              placeholder="URL"
-              validators={[MIN_LENGTH(4)]}
-              id="customshorturl"
-              onInput={onInputHandler}
-              classes="customurl"
-            >
-              CustomUrl
-            </Input>
-            <Input
-              placeholder="hrs"
-              validators={[]}
-              id="expiresIn"
-              onInput={onInputHandler}
-              classes="customurl"
-              type="number"
-            >
-              ExpiresIn
-            </Input>
-          </div>
-          <Button onClick={onSubmitHandler} classes="shorturl">
+          <Input
+            placeholder="URL"
+            validators={[MIN_LENGTH(4)]}
+            id="customshorturl"
+            onInput={onInputHandler}
+            classes="customurl"
+          >
+            CustomUrl
+          </Input>
+          <Input
+            placeholder="hrs"
+            validators={[]}
+            id="expiresIn"
+            onInput={onInputHandler}
+            classes="expiresOn"
+            type="number"
+          >
+            ExpiresIn
+          </Input>
+          <Button onClick={onSubmitHandler} classes="shorturl-btn">
             ShortURL
           </Button>
         </form>

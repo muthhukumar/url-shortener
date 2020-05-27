@@ -22,5 +22,12 @@ body {
 
 main {
   height: 100vh;
-  margin-top: 4rem;
+  width: 100%;
+  background-image: linear-gradient(45deg, rgba(101, 47, 142, 0.88) 0%, rgba(125, 46, 185, 0.45) 100%), url('./asset/background_6.jpg');
+  background-position: center;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }

@@ -2,11 +2,12 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
     margin: 0;
     padding: 0;
 }
 
 .home-card {
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

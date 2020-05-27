@@ -1,9 +1,11 @@
 .title {
     font-size: 1.5rem;
-    color: var(--blue);
+    color: white;
 }
 
-.main-header__title {
-    font-weight: bold;
-    margin: 0.8rem;
+.home-title {
+    font-size: 4rem;
+    font-weight: bolder;
+    letter-spacing: 16px;
+
 }

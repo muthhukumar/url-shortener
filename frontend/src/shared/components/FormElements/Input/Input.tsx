@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from "react";
 
 import "./Input.css";
+
 import { validate, EMAIL } from "../../../Util/Validator";
 
 interface VALIDATE_RESULT {
@@ -63,6 +64,7 @@ const Input: React.FC<InputProps> = (props) => {
   });
 
   const { onInput, id } = props;
+
   const { value, isValid } = state;
 
   useEffect(() => {
@@ -80,12 +82,14 @@ const Input: React.FC<InputProps> = (props) => {
   };
 
   const onTouchHandler = () => {
-    dispatch({ type: "ONBLUR" });
+    dispatch({
+      type: "ONBLUR",
+    });
   };
 
   return (
     <div className={`input ${props.classes ? props.classes : null}`}>
-      <label htmlFor={props.id}>{props.children}</label>
+      <label htmlFor={props.id}> {props.children}</label>
       <input
         onChange={onInputChangeEvent}
         value={state.value}

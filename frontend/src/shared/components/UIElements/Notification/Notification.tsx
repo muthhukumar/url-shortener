@@ -6,6 +6,7 @@ import Button from "../../FormElements/Button/Button";
 interface NotificationProps {
   classes: "error" | "success" | "info" | "warning";
   text: string;
+  onClick: () => void;
 }
 
 const Notification: React.FC<NotificationProps> = (props) => {
@@ -14,6 +15,7 @@ const Notification: React.FC<NotificationProps> = (props) => {
       <div className="notification-wrapper">
         <i>INFO</i>
         <p>{props.text}</p>
+        <button onClick={props.onClick}>X</button>
       </div>
     </div>
   );

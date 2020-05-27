@@ -1,11 +1,57 @@
 .input {
     width: 100%;
-    margin: 0;
+    margin: 0.4rem 0.3rem 0 0.3rem;
 }
 
+.input label {
+    color: white;
+    margin-left: 0.2rem;
+}
 
 .input input {
     height: 3rem;
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.url-input,
+.expiresOn,
+.customurl {
+    margin-bottom: 0.4rem;
+}
+
+.url-input {
+    margin-left: 0.5rem;
+}
+
+.expiresOn {
+    margin-right: 0.5rem;
+}
+
+.url-input input {
+    width: 30rem;
+}
+
+.expiresOn label,
+.url-input label,
+.customurl label {
+    font-size: 1rem;
+}
+
+.expiresOn input,
+.url-input input,
+.customurl input {
+    border-radius: 7px;
+    font-size: 0.9rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+
+
+.expiresOn input:focus,
+.url-input input:focus,
+.customurl input:focus {
+    outline: none;
 }
