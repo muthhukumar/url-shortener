@@ -1,0 +1,14 @@
+.myurl-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.myurl-wrapper div {
+    width: 100%;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 1rem;
+    color: white;
+    font-size: 1rem;
+}

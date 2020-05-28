@@ -2,16 +2,18 @@ import React, { useReducer, useEffect } from "react";
 
 import "./Input.css";
 
-import { validate, EMAIL } from "../../../Util/Validator";
+import { validate } from "../../../Util/Validator";
+
+type VALIDATOR = "REQUIRED" | "EMAIL" | "MIN_LENGTH" | "MAX_LENGTH";
 
 interface VALIDATE_RESULT {
-  type: string;
+  type: VALIDATOR;
   val?: number;
 }
 
 interface InputProps {
   children?: React.ReactNode;
-  classes?: "url-input" | "expiresOn" | "customurl" | "toogle-input";
+  classes?: "url-input" | "expiresIn" | "customurl" | "toogle-input";
   id: string;
   initialValue?: string;
   placeholder?: string;
@@ -19,13 +21,20 @@ interface InputProps {
   validators: VALIDATE_RESULT[];
   onInput: (value: string, id: string, isValid: boolean) => void;
   type?: string;
+  errorMessage: string;
 }
 
-interface Action {
-  type: "ONCHANGE" | "ONBLUR";
-  validators?: VALIDATE_RESULT[];
-  value?: string;
+interface ON_CHANGE {
+  type: "ONCHANGE";
+  validators: VALIDATE_RESULT[];
+  value: string;
 }
+
+interface ON_BLUR {
+  type: "ONBLUR";
+}
+
+type Action = ON_CHANGE | ON_BLUR;
 
 interface State {
   value: string;
@@ -42,7 +51,7 @@ const InputReducer: (state: State, action: Action) => State = (
       return {
         ...state,
         value: action.value!,
-        isValid: validate([EMAIL()], action.value!),
+        isValid: validate(action.validators, action.value),
       };
 
     case "ONBLUR":
@@ -68,7 +77,7 @@ const Input: React.FC<InputProps> = (props) => {
   const { value, isValid } = state;
 
   useEffect(() => {
-    onInput(value, id, isValid);
+    onInput(id, value, isValid);
   }, [value, id, isValid, onInput]);
 
   const onInputChangeEvent: (
@@ -88,8 +97,16 @@ const Input: React.FC<InputProps> = (props) => {
   };
 
   return (
-    <div className={`input ${props.classes ? props.classes : null}`}>
-      <label htmlFor={props.id}> {props.children}</label>
+    <div
+      className={`input ${props.classes ? props.classes : null} ${
+        !state.isValid && state.isTouched ? "invalid-input" : null
+      }`}
+    >
+      <label htmlFor={props.id}>
+        {!state.isValid && state.isTouched
+          ? props.errorMessage
+          : props.children}
+      </label>
       <input
         onChange={onInputChangeEvent}
         value={state.value}
@@ -98,6 +115,7 @@ const Input: React.FC<InputProps> = (props) => {
         onBlur={onTouchHandler}
         type={props.type}
       />
+      {state.isValid}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from "react";
+import { useReducer, useCallback } from "react";
 
 interface Input {
   id: string;
@@ -10,50 +10,77 @@ interface initialInput {
   [key: string]: Input;
 }
 
-const check: initialInput = {
-  email: {
-    isValid: false,
-    value: "",
-    id: "valid id",
-  },
-  password: {
-    isValid: false,
-    value: "",
-    id: "password",
-  },
-};
-
 interface State {
   inputs: initialInput;
-
   isValid: boolean;
 }
 
-interface Action {
-  type: "INPUT_CHANGE" | "INITIALIZE_VALUE";
+interface INPUT_CHANGE {
+  type: "INPUT_CHANGE";
+  id: string;
+  value: string;
+  isValid: boolean;
 }
 
-const FormReducer: (state: State, action: Action) => State = (
+interface INITIALIZE_VALUE {
+  type: "INITIALIZE_VALUE";
+  inputs: initialInput;
+  isValid: boolean;
+}
+
+type ACTION = INITIALIZE_VALUE | INPUT_CHANGE;
+
+type InputChangeFn = (id: string, value: string, isValid: boolean) => void;
+type SetDATA = (inputs: initialInput, isValid: boolean) => void;
+
+const FormReducer: (state: State, action: ACTION) => State = (
   state: State,
   action
 ) => {
   switch (action.type) {
     case "INPUT_CHANGE":
-      return state;
+      let isValid: boolean = true;
+      for (const input in state.inputs) {
+        if (action.id === state.inputs[input].id) {
+          isValid = isValid && action.isValid;
+        } else {
+          isValid = isValid && state.inputs[input].isValid;
+        }
+      }
+
+      return {
+        ...state,
+        isValid,
+        inputs: {
+          ...state.inputs,
+          [action.id]: {
+            isValid: action.isValid,
+            value: action.value,
+            id: action.id,
+          },
+        },
+      };
     case "INITIALIZE_VALUE":
-      return state;
+      return { inputs: action.inputs!, isValid: action.isValid };
   }
 };
 
 export const useForm: (
   input: initialInput,
   initialFormValidity: boolean
-) => void = (input, initialFormValidity) => {
-  const [formState, setFormState] = useReducer(FormReducer, {
-    inputs: input,
+) => [State, InputChangeFn, SetDATA] = (inputs, initialFormValidity) => {
+  const [formState, dispatch] = useReducer(FormReducer, {
+    inputs: inputs,
     isValid: initialFormValidity || false,
   });
-  
 
+  const onInputChange: InputChangeFn = useCallback((id, value, isValid) => {
+    dispatch({ type: "INPUT_CHANGE", value, id, isValid });
+  }, []);
 
+  const setData: SetDATA = useCallback((inputs, formValidity) => {
+    dispatch({ type: "INITIALIZE_VALUE", inputs, isValid: formValidity });
+  }, []);
+
+  return [formState, onInputChange, setData];
 };

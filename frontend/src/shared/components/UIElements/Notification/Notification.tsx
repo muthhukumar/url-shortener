@@ -13,9 +13,11 @@ const Notification: React.FC<NotificationProps> = (props) => {
   return (
     <div className={`notification-container ${props.classes}`}>
       <div className="notification-wrapper">
-        <i>INFO</i>
+        <div className="message">{props.classes.toUpperCase()}</div>
         <p>{props.text}</p>
-        <button onClick={props.onClick}>X</button>
+        <Button onClick={props.onClick} classes="close-btn" disabled={false}>
+          close
+        </Button>
       </div>
     </div>
   );

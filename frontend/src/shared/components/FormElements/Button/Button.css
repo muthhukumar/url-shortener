@@ -6,14 +6,12 @@
 
 .shorturl-btn {
     width: 20rem;
-    height: 80%;
+    height: 4rem;
     margin: auto 1rem;
     border-radius: 8px;
     line-height: 0rem;
     background: rgba(255, 255, 255, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: none;
     color: black;
 }
 
@@ -26,4 +24,23 @@
 .shorturl-btn:active,
 .shorturl-btn:focus {
     outline: none;
+}
+
+.close-btn {
+    padding: 1rem 2rem;
+    color: white;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    outline: none;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.37);
 }

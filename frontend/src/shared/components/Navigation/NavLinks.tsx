@@ -12,7 +12,7 @@ const NavLinks: React.FC = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/shorturl" exact>
+        <NavLink to="/myurls" exact>
           MyUrls
         </NavLink>
       </li>

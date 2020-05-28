@@ -6,7 +6,6 @@
     display: flex;
     top: 0;
     left: 0;
-    transition: all 3s ease-in;
     position: relative;
 }
 
@@ -18,6 +17,11 @@
     width: 100%;
 }
 
+.message {
+    position: absolute;
+    left: 0;
+}
+
 .notification-wrapper i {
     margin: 0 1rem;
 }
@@ -26,17 +30,16 @@
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    vertical-align: top;
     color: white;
+    left: 20%;
+    position: absolute;
 }
 
 .notification-container button {
     position: absolute;
-    background: none;
     border: none;
     font-size: 1rem;
     font-weight: bold;
-
     right: 0%;
 }
 
@@ -49,13 +52,14 @@
 }
 
 .error {
-    background: #f55145;
+    background: #f55145ad;
 }
 
+
 .info {
-    background: #00cae3;
+    background: #00c8e3b9;
 }
 
 .success {
-    background: #55b559;
+    background: #55b558ab;
 }

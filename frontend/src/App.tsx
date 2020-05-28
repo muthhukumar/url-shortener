@@ -9,7 +9,7 @@ import {
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Home from "./Url/Home";
-import MyURLs from "./Url/MyURLs";
+import MyURLs from "./Url/MyURLs/MyURLs";
 import SignUp from "./User/SignUp";
 import Login from "./User/Login";
 import RedirectUrl from "./Url/Redirect";
@@ -27,7 +27,7 @@ function App() {
       {isNotificationOn && (
         <Notification
           classes="error"
-          text="Testing Notificatiob"
+          text="Testing Notification"
           onClick={onCloseHandler}
         />
       )}
