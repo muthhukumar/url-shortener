@@ -44,3 +44,28 @@
     cursor: not-allowed;
     background: rgba(255, 255, 255, 0.37);
 }
+
+
+.myurl-btn {
+    width: 10rem;
+    vertical-align: middle;
+    font-size: 1rem;
+    border-radius: 6px;
+    padding: 2rem;
+    height: 5rem;
+    line-height: 0;
+    background: rgba(255, 255, 255, 0.4);
+    outline: none;
+    border: none;
+    color: white;
+    max-width: 10rem;
+    margin-left: 0.5rem;
+}
+
+.myurl-btn:hover,
+.myurl-btn:active {
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    outline: none;
+    color: black;
+}

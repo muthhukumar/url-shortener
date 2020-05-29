@@ -3,7 +3,7 @@ import React from "react";
 import "./Button.css";
 
 interface ButtonProps {
-  classes?: "shorturl-btn" | "close-btn";
+  classes?: "shorturl-btn" | "close-btn" | "myurl-btn";
   children: string;
   onClick: any;
   disabled: boolean;

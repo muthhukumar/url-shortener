@@ -12,8 +12,9 @@
     flex-direction: column;
 }
 
-.myurls{
-    flex-direction: column;
+.myurls {
     align-items: center;
     justify-content: center;
+    height: 5rem;
+    margin: 0.6rem;
 }

@@ -1,34 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import "./MyURLs.css";
 import Title from "../../shared/components/UIElements/Title/Title";
 import Card from "../../shared/components/UIElements/Card/Card";
 import MyURL from "./MyURL/MyURL";
-
-const myurls = [
-  {
-    url: "www.google.com",
-    expiresIn: 2,
-    shortUrl: "ggl",
-    id: "1",
-  },
-  {
-    url: "www.google.com",
-    expiresIn: 2,
-    id: "2",
-    shortUrl: "ggl",
-  },
-];
+import { RootState } from "../../shared/store/index";
 
 const MyURLs: React.FC = () => {
+  const url = useSelector((state: RootState) => {
+    return state.url;
+  });
+
   return (
     <Card classes="home-card">
-      <Title classes="main-header__title">MyURLs</Title>
+      <Title classes="home-title">MyURLs</Title>
       <div className="myurls-wrapper">
-        {myurls.map((url) => (
+        {url.urls.map((url) => (
           <MyURL
             key={url.id}
             url={url.url}
+            id={url.id}
             expiresIn={url.expiresIn}
             shortUrl={url.shortUrl}
           />

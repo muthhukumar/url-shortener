@@ -4,7 +4,7 @@ import "./Card.css";
 
 interface CardProps {
   children: React.ReactNode;
-  classes: "home-card" | "myurl";
+  classes: "home-card" | "myurls";
 }
 
 const Card: React.FC<CardProps> = (props) => (
