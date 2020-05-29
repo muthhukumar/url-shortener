@@ -18,6 +18,13 @@ app.use("/url", urlRoute);
 app.use("/", redirect);
 
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PATCH, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.next();
+});
+
+app.use((req, res, next) => {
   throw new HttpError("Could not find this route", 404);
 });
 
