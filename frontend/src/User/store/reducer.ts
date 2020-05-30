@@ -1,4 +1,10 @@
-import { LOGIN, SIGNUP, userActionType, userState } from "./actionTypes";
+import {
+  LOGIN,
+  SIGNUP,
+  userActionType,
+  userState,
+  LOGOUT,
+} from "./actionTypes";
 
 const initialState: userState = {
   token: "",
@@ -13,6 +19,8 @@ export function userReducer(
       return { token: action.payload };
     case SIGNUP:
       return { token: action.payload };
+    case LOGOUT:
+      return { token: "" };
     default:
       return state;
   }

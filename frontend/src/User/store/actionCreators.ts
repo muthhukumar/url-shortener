@@ -1,4 +1,4 @@
-import { LOGIN, SIGNUP, userActionType, token } from "./actionTypes";
+import { LOGIN, SIGNUP, userActionType, token, LOGOUT } from "./actionTypes";
 
 export function loginAction(token: token): userActionType {
   return {
@@ -11,5 +11,11 @@ export function signupAction(token: token): userActionType {
   return {
     type: SIGNUP,
     payload: token,
+  };
+}
+
+export function logoutAction(): userActionType {
+  return {
+    type: LOGOUT,
   };
 }

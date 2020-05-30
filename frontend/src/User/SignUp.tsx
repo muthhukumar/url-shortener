@@ -7,6 +7,8 @@ import Input from "../shared/components/FormElements/Input/Input";
 import Button from "../shared/components/FormElements/Button/Button";
 import { REQUIRED, MIN_LENGTH, EMAIL } from "../shared/Util/Validator";
 import { useForm } from "../shared/hooks/form-hook";
+import { useDispatch } from "react-redux";
+import { thunkSignup } from "./store/thunkAsyncActionCreator";
 
 const SignUp: React.FC = () => {
   const [formState, onInputChange] = useForm(
@@ -17,11 +19,22 @@ const SignUp: React.FC = () => {
     },
     false
   );
+  const dispatch = useDispatch();
+  const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    dispatch(
+      thunkSignup({
+        name: formState.inputs.name.value,
+        email: formState.inputs.email.value,
+        password: formState.inputs.password.value,
+      })
+    );
+  };
   return (
     <Card classes="home-card">
       <Title classes="home-title">SignUp</Title>
       <div className="signup-wrapper">
-        <form>
+        <form onSubmit={formSubmitHandler}>
           <Input
             id="name"
             onInput={onInputChange}
@@ -53,7 +66,7 @@ const SignUp: React.FC = () => {
             Password
           </Input>
           <Button
-            onClick={() => {}}
+            type="submit"
             classes="shorturl-btn"
             disabled={!formState.isValid}
           >

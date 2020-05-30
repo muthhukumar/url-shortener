@@ -6,6 +6,7 @@ export interface userState {
 
 export const LOGIN = "LOGIN";
 export const SIGNUP = "SIGNUP";
+export const LOGOUT = "LOGOUT";
 
 export interface loginAction {
   type: typeof LOGIN;
@@ -17,4 +18,8 @@ export interface signupAction {
   payload: token;
 }
 
-export type userActionType = loginAction | signupAction;
+export interface logoutAction {
+  type: typeof LOGOUT;
+}
+
+export type userActionType = loginAction | signupAction | logoutAction;

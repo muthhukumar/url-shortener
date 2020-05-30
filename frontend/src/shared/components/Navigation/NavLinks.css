@@ -2,11 +2,12 @@
     display: flex;
     padding: 0;
     margin: 0;
+    align-items: center;
 }
 
 .nav-link li {
     list-style: none;
-    margin: 0.8rem 0rem;
+    margin: 0.8rem 0.32rem;
 }
 
 .nav-link a {

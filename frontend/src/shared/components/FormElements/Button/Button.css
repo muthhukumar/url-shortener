@@ -69,3 +69,21 @@
     outline: none;
     color: black;
 }
+
+
+.logout-btn {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    color: #ffffff;
+    display: inline-block;
+    padding: 1.3rem 2.8rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.26);
+    cursor: pointer;
+}
