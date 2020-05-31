@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import Home from "./Url/Home";
+import Home from "./Url/home/Home";
 import MyURLs from "./Url/MyURLs/MyURLs";
 import SignUp from "./User/SignUp";
 import Login from "./User/Login";
 import RedirectUrl from "./Url/Redirect";
 import Notification from "./shared/components/UIElements/Notification/Notification";
 import { RootState } from "./shared/store/index";
+import { closeNotification } from "./shared/store/actionCreators";
 
 function App() {
-  const [isNotificationOn, setIsNotificationOn] = useState<boolean>(true);
-  const token = useSelector((state: RootState) => {
-    return state.user.token;
+  const [token, isOpen] = useSelector((state: RootState) => {
+    return [state.user.token, state.ui.isNotificationOpen];
   });
-
+  const dispatch = useDispatch();
   useEffect(() => {
     console.log(token);
   }, [token]);
 
   const onCloseHandler = () => {
-    setIsNotificationOn(false);
+    dispatch(closeNotification());
   };
   let route = null;
   if (token) {
@@ -35,6 +35,7 @@ function App() {
       <Switch>
         <Route path="/home" exact component={Home} />
         <Route path="/myurls" exact component={MyURLs} />
+        <Route path="/link/:expired" exact component={RedirectUrl} />
         <Redirect to="/home" />
       </Switch>
     );
@@ -44,6 +45,7 @@ function App() {
         <Route path="/home" exact component={Home} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
+        <Route path="/link/:expired" exact component={RedirectUrl} />
         <Redirect to="/home" />
       </Switch>
     );
@@ -51,7 +53,7 @@ function App() {
 
   return (
     <Router>
-      {isNotificationOn && (
+      {isOpen && (
         <Notification
           classes="error"
           text="Testing Notification"

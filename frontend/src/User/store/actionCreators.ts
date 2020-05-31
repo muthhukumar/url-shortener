@@ -1,16 +1,16 @@
 import { LOGIN, SIGNUP, userActionType, token, LOGOUT } from "./actionTypes";
 
-export function loginAction(token: token): userActionType {
+export function loginAction(accessToken: token): userActionType {
   return {
     type: LOGIN,
-    payload: token,
+    payload: accessToken,
   };
 }
 
-export function signupAction(token: token): userActionType {
+export function signupAction(accessToken: token): userActionType {
   return {
     type: SIGNUP,
-    payload: token,
+    payload: accessToken,
   };
 }
 

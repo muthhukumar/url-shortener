@@ -9,6 +9,7 @@ import { REQUIRED, MIN_LENGTH, EMAIL } from "../shared/Util/Validator";
 import { useForm } from "../shared/hooks/form-hook";
 import { useDispatch } from "react-redux";
 import { thunkSignup } from "./store/thunkAsyncActionCreator";
+import { loading } from "../shared/store/actionCreators";
 
 const SignUp: React.FC = () => {
   const [formState, onInputChange] = useForm(
@@ -22,6 +23,7 @@ const SignUp: React.FC = () => {
   const dispatch = useDispatch();
   const formSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    dispatch(loading());
     dispatch(
       thunkSignup({
         name: formState.inputs.name.value,

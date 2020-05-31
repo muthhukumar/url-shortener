@@ -2,13 +2,14 @@ export type ID = string;
 
 export interface URL {
   url: string;
-  shortUrl: string;
-  expiresIn: number;
-  id: ID;
+  shortenedUrl: string;
+  expiresOn: string;
+  _id: ID;
 }
 
 export interface URLState {
   urls: URL[];
+  shortUrl: URL;
 }
 
 export const SEND_URL = "SEND_URL";

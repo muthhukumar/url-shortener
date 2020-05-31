@@ -7,20 +7,13 @@ import {
 } from "./actionTypes";
 
 const initialURLState: URLState = {
-  urls: [
-    // {
-    //   url: "www.google.com../../shared/components/UIElements/Title/Title",
-    //   expiresIn: 2,
-    //   shortUrl: "ggl",
-    //   id: "1",
-    // },
-    // {
-    //   url: "www.google.com",
-    //   expiresIn: 2,
-    //   id: "2",
-    //   shortUrl: "ggl",
-    // },
-  ],
+  urls: [],
+  shortUrl: {
+    url: "",
+    shortenedUrl: "",
+    expiresOn: "",
+    _id: "",
+  },
 };
 
 export function urlReducer(
@@ -29,11 +22,25 @@ export function urlReducer(
 ): URLState {
   switch (action.type) {
     case SEND_URL:
-      return { urls: [...state.urls, action.payload] };
+      return {
+        shortUrl: { ...action.payload },
+        urls: [...state.urls, action.payload],
+      };
     case DELETE_URL:
-      return { urls: state.urls.filter((url) => url.id !== action.payload) };
+      return {
+        ...state,
+        urls: state.urls.filter((url) => url._id !== action.payload),
+      };
     case MY_URLS:
-      return { urls: [...state.urls, ...action.payload] };
+      const urls = action.payload.map((newUrl) => {
+        return {
+          url: newUrl.url,
+          _id: newUrl._id,
+          expiresOn: newUrl.expiresOn ? newUrl.expiresOn.slice(0, 10) : "none",
+          shortenedUrl: newUrl.shortenedUrl,
+        };
+      });
+      return { ...state, urls: [...urls] };
     default:
       return state;
   }

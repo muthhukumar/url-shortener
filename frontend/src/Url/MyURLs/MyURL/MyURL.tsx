@@ -1,21 +1,25 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./MyURL.css";
 import Card from "../../../shared/components/UIElements/Card/Card";
 import Button from "../../../shared/components/FormElements/Button/Button";
-import { deleteUrl } from "../../store/actionCreators";
+import { thunkDeleteUrl } from "../../store/thunkAsyncActionCreators";
+import { RootState } from "../../../shared/store/index";
 
 interface Props {
   url: string;
-  expiresIn: number;
+  expiresIn: string;
   shortUrl: string;
   id: string;
 }
 
 const MyURL: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
-  const removeUrl = () => dispatch(deleteUrl(props.id));
+  const token = useSelector((state: RootState) => {
+    return state.user.token;
+  });
+  const removeUrl = () => dispatch(thunkDeleteUrl(props.shortUrl, token));
   return (
     <Card classes="myurls">
       <div className="myurl-wrapper">

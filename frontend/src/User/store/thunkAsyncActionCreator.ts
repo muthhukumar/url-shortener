@@ -3,6 +3,7 @@ import { ThunkAction } from "redux-thunk";
 import { RootState } from "../../shared/store/index";
 import { loginAction, signupAction } from "./actionCreators";
 import { getData } from "../../shared/Util/getData";
+import { stopLoading } from "../../shared/store/actionCreators";
 
 interface Credentials {
   email: string;
@@ -22,6 +23,7 @@ export const thunkLogin = (
     throw err;
   }
   dispatch(loginAction(response.token));
+  dispatch(stopLoading());
 };
 
 export const thunkSignup = (
@@ -36,4 +38,5 @@ export const thunkSignup = (
     throw err;
   }
   dispatch(signupAction(response.token));
+  dispatch(stopLoading());
 };

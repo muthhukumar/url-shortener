@@ -32,11 +32,11 @@ const MyURLs: React.FC = () => {
         {url.urls.length !== 0 &&
           url.urls.map((url) => (
             <MyURL
-              key={url.id}
+              key={url._id}
               url={url.url}
-              id={url.id}
-              expiresIn={url.expiresIn}
-              shortUrl={url.shortUrl}
+              id={url._id}
+              expiresIn={url.expiresOn}
+              shortUrl={url.shortenedUrl}
             />
           ))}
       </div>

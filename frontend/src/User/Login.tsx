@@ -9,6 +9,7 @@ import Button from "../shared/components/FormElements/Button/Button";
 import { REQUIRED, EMAIL } from "../shared/Util/Validator";
 import { useForm } from "../shared/hooks/form-hook";
 import { thunkLogin } from "./store/thunkAsyncActionCreator";
+import { loading } from "../shared/store/actionCreators";
 
 const Login: React.FC = () => {
   const [formState, onInputChange] = useForm(
@@ -27,6 +28,7 @@ const Login: React.FC = () => {
       email: formState.inputs.email.value,
       password: formState.inputs.password.value,
     };
+    dispatch(loading());
     dispatch(thunkLogin(credentials));
   };
 

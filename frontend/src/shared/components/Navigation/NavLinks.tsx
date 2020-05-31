@@ -6,6 +6,7 @@ import "./NavLinks.css";
 import { RootState } from "../../store/index";
 import Button from "../FormElements/Button/Button";
 import { logoutAction } from "../../../User/store/actionCreators";
+import { myUrls } from "../../../Url/store/actionCreators";
 
 const NavLinks: React.FC = () => {
   const token = useSelector((state: RootState) => {
@@ -14,6 +15,7 @@ const NavLinks: React.FC = () => {
   const dispatch = useDispatch();
   const onLogoutHandler = () => {
     dispatch(logoutAction());
+    dispatch(myUrls([]));
   };
   return (
     <ul className="nav-link">

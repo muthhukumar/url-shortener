@@ -1,0 +1,28 @@
+.redirect-wrapper {
+    width: 30rem;
+    height: 20rem;
+    background: rgba(255, 255, 255, 0.253);
+    border-radius: 6px;
+    box-shadow: 0 0 3px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.redirect-wrapper h4 {
+    font-size: 2.7rem;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 3rem 0;
+    letter-spacing: 0.2rem;
+}
+
+.redirect-wrapper a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 2rem 4rem;
+    color: white;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.288);
+}
