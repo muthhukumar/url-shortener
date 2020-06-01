@@ -4,7 +4,7 @@ import "./Notification.css";
 import Button from "../../FormElements/Button/Button";
 
 interface NotificationProps {
-  classes: "error" | "success" | "info" | "warning";
+  classes: "error" | "success" | "info" | "warning" | "close-animation";
   text: string;
   onClick: () => void;
 }

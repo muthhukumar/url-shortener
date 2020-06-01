@@ -10,12 +10,14 @@ export interface URL {
 export interface URLState {
   urls: URL[];
   shortUrl: URL;
+  isNewUrlCreated: boolean;
 }
 
 export const SEND_URL = "SEND_URL";
 export const MY_URLS = "MY_URLS";
 export const DELETE_URL = "DELETE_URL";
 export const REDIRECT = "REDIRECT";
+export const NEW_URL = "NEW_URL";
 
 interface redirectAction {
   type: typeof REDIRECT;
@@ -23,7 +25,7 @@ interface redirectAction {
 
 interface sendURLAction {
   type: typeof SEND_URL;
-  payload: URL;
+  payload: { isNewUrlCreated: true; newUrl: URL };
 }
 
 interface myURLsAction {
@@ -36,8 +38,14 @@ interface deleteURLAction {
   payload: ID;
 }
 
+interface newUrlAction {
+  type: typeof NEW_URL;
+  payload: false;
+}
+
 export type URLActionType =
   | sendURLAction
   | deleteURLAction
   | myURLsAction
-  | redirectAction;
+  | redirectAction
+  | newUrlAction;

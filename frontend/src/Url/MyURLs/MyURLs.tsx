@@ -7,6 +7,7 @@ import Card from "../../shared/components/UIElements/Card/Card";
 import MyURL from "./MyURL/MyURL";
 import { RootState } from "../../shared/store/index";
 import { thunkMyURLs } from "../store/thunkAsyncActionCreators";
+import {loading} from "../../shared/store/actionCreators";
 
 const MyURLs: React.FC = () => {
   const url = useSelector((state: RootState) => {
@@ -19,6 +20,7 @@ const MyURLs: React.FC = () => {
 
   useEffect(() => {
     if (token) {
+      dispatch(loading());
       dispatch(thunkMyURLs(token));
     }
   }, [token, dispatch]);
@@ -32,6 +34,7 @@ const MyURLs: React.FC = () => {
         {url.urls.length !== 0 &&
           url.urls.map((url) => (
             <MyURL
+              action="DELETE"
               key={url._id}
               url={url.url}
               id={url._id}

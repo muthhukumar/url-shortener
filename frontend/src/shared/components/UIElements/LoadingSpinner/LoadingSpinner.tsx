@@ -4,8 +4,10 @@ import "./LoadingSpinner.css";
 
 const LoadingSpinner: React.FC = (props) => {
   return (
-    <div className="lds-circle">
-      <div></div>
+    <div className="loading-container">
+      <div className="lds-circle">
+        <div></div>
+      </div>
     </div>
   );
 };

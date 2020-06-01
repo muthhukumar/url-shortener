@@ -15,7 +15,7 @@ export const getData: Fetch = async (method, data, url, token) => {
     headers,
     url,
   })
-    .then((res) => res.data)
+    .then((res) => res)
     .catch((err) => {
       throw err;
     });

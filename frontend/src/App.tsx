@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Home from "./Url/home/Home";
@@ -13,22 +13,13 @@ import MyURLs from "./Url/MyURLs/MyURLs";
 import SignUp from "./User/SignUp";
 import Login from "./User/Login";
 import RedirectUrl from "./Url/Redirect";
-import Notification from "./shared/components/UIElements/Notification/Notification";
 import { RootState } from "./shared/store/index";
-import { closeNotification } from "./shared/store/actionCreators";
 
 function App() {
-  const [token, isOpen] = useSelector((state: RootState) => {
-    return [state.user.token, state.ui.isNotificationOpen];
+  const token = useSelector((state: RootState) => {
+    return state.user.token;
   });
-  const dispatch = useDispatch();
-  useEffect(() => {
-    console.log(token);
-  }, [token]);
 
-  const onCloseHandler = () => {
-    dispatch(closeNotification());
-  };
   let route = null;
   if (token) {
     route = (
@@ -53,13 +44,6 @@ function App() {
 
   return (
     <Router>
-      {isOpen && (
-        <Notification
-          classes="error"
-          text="Testing Notification"
-          onClick={onCloseHandler}
-        />
-      )}
       <MainNavigation />
       <main>{route}</main>
     </Router>

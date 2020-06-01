@@ -58,7 +58,7 @@ const Home: React.FC = () => {
           </Input>
           <Input
             placeholder="URL"
-            validators={[MIN_LENGTH(4), REQUIRED()]}
+            validators={[MIN_LENGTH(4)]}
             id="customshorturl"
             onInput={onInputChange}
             classes="customurl"
@@ -71,6 +71,8 @@ const Home: React.FC = () => {
             validators={[]}
             id="expiresIn"
             onInput={onInputChange}
+            min={1}
+            max={365}
             classes="expiresIn"
             type="number"
             errorMessage="Select value"

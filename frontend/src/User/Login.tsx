@@ -10,6 +10,10 @@ import { REQUIRED, EMAIL } from "../shared/Util/Validator";
 import { useForm } from "../shared/hooks/form-hook";
 import { thunkLogin } from "./store/thunkAsyncActionCreator";
 import { loading } from "../shared/store/actionCreators";
+import {
+  userAleadyExist,
+  loginSuccessful,
+} from "../shared/store/actionCreators";
 
 const Login: React.FC = () => {
   const [formState, onInputChange] = useForm(

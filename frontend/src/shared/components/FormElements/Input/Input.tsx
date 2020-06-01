@@ -22,6 +22,8 @@ interface InputProps {
   onInput: (value: string, id: string, isValid: boolean) => void;
   type?: string;
   errorMessage: string;
+  min?: number;
+  max?: number;
 }
 
 interface ON_CHANGE {
@@ -114,6 +116,8 @@ const Input: React.FC<InputProps> = (props) => {
         placeholder={props.placeholder}
         onBlur={onTouchHandler}
         type={props.type}
+        min={props.min}
+        max={props.max}
       />
       {state.isValid}
     </div>

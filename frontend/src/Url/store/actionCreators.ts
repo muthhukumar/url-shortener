@@ -6,12 +6,13 @@ import {
   REDIRECT,
   URL,
   ID,
+  NEW_URL,
 } from "./actionTypes";
 
 export function sendUrl(newUrl: URL): URLActionType {
   return {
     type: SEND_URL,
-    payload: newUrl,
+    payload: { newUrl, isNewUrlCreated: true },
   };
 }
 
@@ -32,5 +33,12 @@ export function deleteUrl(id: ID): URLActionType {
 export function redirectUrl(): URLActionType {
   return {
     type: REDIRECT,
+  };
+}
+
+export function createNewUrl(): URLActionType {
+  return {
+    type: NEW_URL,
+    payload: false,
   };
 }

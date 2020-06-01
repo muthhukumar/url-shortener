@@ -6,12 +6,15 @@ import Card from "../../../shared/components/UIElements/Card/Card";
 import Button from "../../../shared/components/FormElements/Button/Button";
 import { thunkDeleteUrl } from "../../store/thunkAsyncActionCreators";
 import { RootState } from "../../../shared/store/index";
+import { loading } from "../../../shared/store/actionCreators";
+import { createNewUrl } from "../../store/actionCreators";
 
 interface Props {
   url: string;
   expiresIn: string;
   shortUrl: string;
   id: string;
+  action: "DELETE" | "NEW";
 }
 
 const MyURL: React.FC<Props> = (props) => {
@@ -19,7 +22,15 @@ const MyURL: React.FC<Props> = (props) => {
   const token = useSelector((state: RootState) => {
     return state.user.token;
   });
-  const removeUrl = () => dispatch(thunkDeleteUrl(props.shortUrl, token));
+  const onClickActionHandler = () => {
+    if (props.action === "DELETE") {
+      return (
+        dispatch(loading()),
+        dispatch(thunkDeleteUrl(props.shortUrl, props.id, token))
+      );
+    }
+    dispatch(createNewUrl());
+  };
   return (
     <Card classes="myurls">
       <div className="myurl-wrapper">
@@ -35,8 +46,12 @@ const MyURL: React.FC<Props> = (props) => {
           <label htmlFor="shorturl">ShortURL</label>
           <div>{props.shortUrl}</div>
         </div>
-        <Button onClick={removeUrl} classes="myurl-btn" disabled={false}>
-          DELETE
+        <Button
+          onClick={onClickActionHandler}
+          classes="myurl-btn"
+          disabled={false}
+        >
+          {props.action}
         </Button>
       </div>
     </Card>

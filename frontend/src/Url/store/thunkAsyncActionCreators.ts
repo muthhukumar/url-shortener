@@ -2,10 +2,17 @@ import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
 
 import { RootState } from "../../shared/store/index";
-import { myUrls, deleteUrl } from "../store/actionCreators";
+import { myUrls, deleteUrl, sendUrl } from "../store/actionCreators";
 import { getData } from "../../shared/Util/getData";
 import { URL } from "../store/actionTypes";
-import { stopLoading } from "../../shared/store/actionCreators";
+import {
+  stopLoading,
+  urlFetchFailed,
+  urlDeleteFailed,
+  urlDeleted,
+  urlCreateFailed,
+  urlCreated,
+} from "../../shared/store/actionCreators";
 
 export const thunkMyURLs: (
   token: string
@@ -15,30 +22,32 @@ export const thunkMyURLs: (
   let response;
   try {
     response = await getData("get", null, "url/myurls", token);
+    dispatch(myUrls(response.data.urlDetails));
   } catch (err) {
-    throw err;
+    dispatch(urlFetchFailed());
   }
-  console.log(response);
-  dispatch(myUrls(response.urlDetails));
+  dispatch(stopLoading());
 };
 
 export const thunkDeleteUrl: (
   shortUrl: string,
+  id: string,
   token: string
 ) => ThunkAction<void, RootState, unknown, Action<string>> = (
   shortUrl,
+  id,
   token
 ) => {
   return async (dispatch) => {
-    let response;
     try {
-      response = await getData("delete", null, "url/" + shortUrl, token);
-      console.log(response);
+      await getData("delete", null, "url/" + shortUrl, token);
+      dispatch(deleteUrl(id));
+      dispatch(urlDeleted());
     } catch (err) {
-      throw err;
+      dispatch(urlDeleteFailed());
     }
     //try to change
-    dispatch(deleteUrl(shortUrl));
+    dispatch(stopLoading());
   };
 };
 
@@ -52,9 +61,10 @@ export const thunkNewURL: (
   let response;
   try {
     response = await getData("post", newUrl, "url/shorturl", token);
+    dispatch(sendUrl(newUrl));
+    dispatch(urlCreated());
   } catch (err) {
-    throw err;
+    dispatch(urlCreateFailed());
   }
   dispatch(stopLoading());
-  // console.log(response.newUrl);
 };

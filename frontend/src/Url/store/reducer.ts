@@ -4,6 +4,7 @@ import {
   MY_URLS,
   URLState,
   URLActionType,
+  NEW_URL,
 } from "./actionTypes";
 
 const initialURLState: URLState = {
@@ -14,6 +15,7 @@ const initialURLState: URLState = {
     expiresOn: "",
     _id: "",
   },
+  isNewUrlCreated: false,
 };
 
 export function urlReducer(
@@ -23,8 +25,9 @@ export function urlReducer(
   switch (action.type) {
     case SEND_URL:
       return {
-        shortUrl: { ...action.payload },
-        urls: [...state.urls, action.payload],
+        shortUrl: { ...action.payload.newUrl },
+        urls: [...state.urls, action.payload.newUrl],
+        isNewUrlCreated: action.payload.isNewUrlCreated,
       };
     case DELETE_URL:
       return {
@@ -41,6 +44,17 @@ export function urlReducer(
         };
       });
       return { ...state, urls: [...urls] };
+    case NEW_URL:
+      return {
+        ...state,
+        shortUrl: {
+          url: "",
+          shortenedUrl: "",
+          expiresOn: "",
+          _id: "",
+        },
+        isNewUrlCreated: action.payload,
+      };
     default:
       return state;
   }
