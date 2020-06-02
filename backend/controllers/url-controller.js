@@ -34,8 +34,13 @@ const myUrls = async (req, res, next) => {
   } catch (err) {
     return next(new HttpError("Unable to fetch url for the given user"));
   }
-
-  res.status(200).json({ urls });
+  let urlDetails;
+  try {
+    urlDetails = await Url.find({ _id: { $in: urls } });
+  } catch (err) {
+    return next(new HttpError("Unable to fetch url for the given user"));
+  }
+  res.status(200).json({ urlDetails });
 };
 
 const shortUrl = async (req, res, next) => {
@@ -124,7 +129,6 @@ const deleteUrl = async (req, res, next) => {
   } catch (err) {
     return next(new HttpError("Could not delete url"));
   }
-
   if (!url) {
     return next(new HttpError("Unable to find shortenedurl"));
   }

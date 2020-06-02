@@ -65,7 +65,7 @@ const signup = async (req, res, next) => {
   }
 
   if (existingUser) {
-    return next(new HttpError("User already exists, Login instead", 422));
+    return next(new HttpError("User already exists, Login instead", 409));
   }
 
   let hashedPassword;

@@ -30,8 +30,10 @@ const redirect = async (req, res, next) => {
 
   res
     //.status(201)
-    .json(`<meta http-equiv= "refresh" content="5;url=${url.url}"/>`);
-  // .redirect(`https://${url.url}`);
+    //.json(`<meta http-equiv= "refresh" content="5;url=${url.url}"/>`);
+   .redirect(`https://${url.url}`);
+     //.json({url : url.url});
+
 };
 
 const setCounter = async (req, res, next) => {
