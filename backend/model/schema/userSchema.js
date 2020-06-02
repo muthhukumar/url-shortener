@@ -20,6 +20,12 @@ const userSchema = new Schema({
   urls: {
     type: [{ type: mongoose.Types.ObjectId, ref: "Url" }],
   },
+  refresh_token: {
+    type: String,
+  },
+  refresh_tokenExpiresIn: {
+    type: Date,
+  },
 });
 
 userSchema.plugin(uniqueValidator);
