@@ -54,3 +54,19 @@ export const thunkSignup = (
   }
   dispatch(stopLoading());
 };
+
+export const thunkAutoLogin = (): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  Action<string>
+> => async (dispatch) => {
+  let response;
+  try {
+    response = await getData("get", null, "/user/refresh_token", null);
+    console.log(response.data);
+    dispatch(loginAction(response.data.token));
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -34,7 +34,7 @@ const Home: React.FC = () => {
     const newUrl = {
       url: formState.inputs.url.value,
       expiresOn: createDate(+formState.inputs.expiresIn.value),
-      shortenedUrl: formState.inputs.customshorturl.value,
+      customUrl: formState.inputs.customshorturl.value,
       _id: "",
     };
     dispatch(loading());

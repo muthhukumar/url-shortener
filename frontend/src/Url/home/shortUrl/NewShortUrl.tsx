@@ -15,7 +15,7 @@ const NewShortUrl: React.FC = () => {
         action="NEW"
         url={newShortUrl.url}
         expiresIn={newShortUrl.expiresOn}
-        shortUrl={newShortUrl.shortenedUrl}
+        shortUrl={newShortUrl.customUrl}
         id={newShortUrl._id}
       />
     </Card>

@@ -11,7 +11,7 @@ const initialURLState: URLState = {
   urls: [],
   shortUrl: {
     url: "",
-    shortenedUrl: "",
+    customUrl: "",
     expiresOn: "",
     _id: "",
   },
@@ -40,7 +40,7 @@ export function urlReducer(
           url: newUrl.url,
           _id: newUrl._id,
           expiresOn: newUrl.expiresOn ? newUrl.expiresOn.slice(0, 10) : "none",
-          shortenedUrl: newUrl.shortenedUrl,
+          customUrl: newUrl.customUrl,
         };
       });
       return { ...state, urls: [...urls] };
@@ -49,7 +49,7 @@ export function urlReducer(
         ...state,
         shortUrl: {
           url: "",
-          shortenedUrl: "",
+          customUrl: "",
           expiresOn: "",
           _id: "",
         },

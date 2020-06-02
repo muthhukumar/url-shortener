@@ -2,7 +2,7 @@ export type ID = string;
 
 export interface URL {
   url: string;
-  shortenedUrl: string;
+  customUrl: string;
   expiresOn: string;
   _id: ID;
 }
