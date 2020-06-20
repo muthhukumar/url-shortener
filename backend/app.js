@@ -8,11 +8,14 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
 app.use(cookieParser());
 app.use(
-  cors({
-    credentials: true,
-  })
+   cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+   })
 );
 
 require("./mongoose-connection/mongoose");
@@ -34,18 +37,18 @@ app.use("/url", urlRoute);
 app.use("/", redirect);
 
 app.use((req, res, next) => {
-  throw new HttpError("Could not find this route", 404);
+   throw new HttpError("Could not find this route", 404);
 });
 
 app.use((error, req, res, next) => {
-  if (res.headerSent) {
-    return next(error);
-  }
-  res
-    .status(error.code || 500)
-    .json({ message: error.message || "An unknown error ocurred" });
+   if (res.headerSent) {
+      return next(error);
+   }
+   res
+      .status(error.code || 500)
+      .json({message: error.message || "An unknown error ocurred"});
 });
 
 app.listen(process.env.PORT, () => {
-  console.log("Server is listening in the port " + process.env.PORT);
+   console.log("Server is listening in the port " + process.env.PORT);
 });

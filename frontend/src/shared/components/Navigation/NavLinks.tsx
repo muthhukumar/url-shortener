@@ -5,9 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./NavLinks.css";
 import { RootState } from "../../store/index";
 import Button from "../FormElements/Button/Button";
-import { logoutAction } from "../../../User/store/actionCreators";
-import { myUrls, createNewUrl } from "../../../Url/store/actionCreators";
-import { logout } from "../../store/actionCreators";
+import {thunkLogout} from "../../../User/store/thunkAsyncActionCreator";
 
 const NavLinks: React.FC = () => {
   const token = useSelector((state: RootState) => {
@@ -15,10 +13,7 @@ const NavLinks: React.FC = () => {
   });
   const dispatch = useDispatch();
   const onLogoutHandler = () => {
-    dispatch(logoutAction());
-    dispatch(createNewUrl());
-    dispatch(logout());
-    dispatch(myUrls([]));
+     dispatch(thunkLogout());
   };
   return (
     <ul className="nav-link">

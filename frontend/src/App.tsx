@@ -23,7 +23,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!token) dispatch(thunkAutoLogin());
-  }, []);
+  }, [dispatch, token]);
 
   let route = null;
   if (token) {
